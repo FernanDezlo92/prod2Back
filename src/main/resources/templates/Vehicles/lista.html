@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lista de Vehiculos</title>
+  </head>
+  <body>
+    <h1>Lista de Vehiculos</h1>
+
+    <table border="1">
+      <tr>
+        <th>ID</th>
+        <th>Matricula</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Tipo Vehiculo</th>
+        <th>Acciones</th>
+      </tr>
+      <tr th:each="vehicle : ${vehicles}">
+        <td th:text="${vehicle.id}"></td>
+        <td th:text="${vehicle.matricula}"></td>
+        <td th:text="${vehicle.marca}"></td>
+        <td th:text="${vehicle.modelo}"></td>
+
+        <td>
+          <a th:href="@{/vehicles/{id}(id=${vehicle.id})}">Detalles</a>
+          <a th:href="@{/vehicles/{id}/editar(id=${vehicle.id})}">Editar</a>
+          <a th:href="@{/vehicles/{id}/eliminar(id=${vehicle.id})}">Eliminar</a>
+        </td>
+      </tr>
+    </table>
+
+    <a th:href="@{/vehicles/nuevo}" class="btn">Nuevo Vehiculo</a>
+  </body>
+</html>

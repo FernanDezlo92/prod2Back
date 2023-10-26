@@ -1,24 +1,39 @@
 package producto2_065_BearsJava.model;
 
 import jakarta.persistence.*;
+import java.util.List;
+
 @Entity
-@Table (name = "clientes")
+@Table(name = "clientes")
 public class Clientes {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(name = "first_name")
     private String firstName;
-    @Column(name = "last_name")
-    private String lastName;
-    @Column(name = "email")
-    private String email;
+    @Column(name = "nif") // Agregado el campo nif
+    private String nif;
+    @Column(name = "password") // Agregado el campo password
+    private String password;
 
-    public long getId() {
+    @OneToMany(mappedBy = "cliente")
+    private List<Vehicles> vehicles;
+
+    // Getters y setters para el campo nif
+    public String getNif() {
+        return nif;
+    }
+
+    public void setNif(String nif) {
+        this.nif = nif;
+    }
+
+    // Resto de los getters y setters para otros campos
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -30,19 +45,11 @@ public class Clientes {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

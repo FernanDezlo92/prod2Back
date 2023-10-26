@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Crear Nuevo Cliente</title>
+  </head>
+  <body>
+    <h1>Crear Nuevo Cliente</h1>
+
+    <form th:object="${clientes}" th:action="@{/clientes}" method="post">
+      <label for="firstName">Nombre:</label>
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        th:field="*{firstName}"
+        required
+      />
+
+      <label for="nif">NIF:</label>
+      <input type="text" id="nif" name="nif" th:field="*{nif}" required />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        th:field="*{password}"
+        required
+      />
+
+      <button type="submit">Guardar Cliente</button>
+    </form>
+
+    <a th:href="@{/clientes}" class="btn">Volver a la lista de Clientes</a>
+  </body>
+</html>

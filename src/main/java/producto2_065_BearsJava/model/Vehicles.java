@@ -2,15 +2,13 @@ package producto2_065_BearsJava.model;
 
 import jakarta.persistence.*;
 
-import static jakarta.persistence.InheritanceType.JOINED;
-
 @Entity
-@Table (name = "vehiculos")
-@Inheritance(strategy=JOINED)
-public abstract class Vehicles {
+@Table(name = "vehiculos")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Vehicles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "matricula")
     protected String matricula;
     @Column(name = "marca")
@@ -18,11 +16,22 @@ public abstract class Vehicles {
     @Column(name = "modelo")
     protected String modelo;
 
-    public long getId() {
+    @JoinColumn(name = "tipo_vehiculo_id")
+    @ManyToOne
+    protected TiposVehiculos tiposVehiculos;
+
+    @JoinColumn(name = "id_cliente")
+    @ManyToOne
+    protected Clientes cliente;
+
+    public Vehicles() {
+    }
+
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,4 +58,13 @@ public abstract class Vehicles {
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
+
+    public void setTipoVehiculo(TiposVehiculos tipoVehiculo) {
+        this.tiposVehiculos = tipoVehiculo;
+    }
+
+    public TiposVehiculos getTiposVehiculos() {
+        return this.tiposVehiculos;
+    }
+
 }

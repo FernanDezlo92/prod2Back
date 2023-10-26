@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lista de Tipos de Vehículos</title>
+  </head>
+  <body>
+    <h1>Lista de Tipos de Vehículos</h1>
+
+    <table border="1">
+      <tr>
+        <th>ID</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+      <tr th:each="tipoVehiculo : ${tipoVehiculo}">
+        <td th:text="${tipoVehiculo.id}">ID</td>
+        <td th:text="${tipoVehiculo.descripcion}">Descripción</td>
+        <td>
+          <a th:href="@{/tiposvehiculos/{id}/editar(id=${tipoVehiculo.id})}"
+            >Editar</a
+          >
+          <a th:href="@{/tiposvehiculos/{id}/eliminar(id=${tipoVehiculo.id})}"
+            >Eliminar</a
+          >
+        </td>
+      </tr>
+    </table>
+    <button>
+      <a th:href="@{/tiposvehiculos/nuevo}">Crear</a>
+    </button>
+  </body>
+</html>

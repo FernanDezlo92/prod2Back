@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Crear Nuevo Tipo de Vehículo</title>
+  </head>
+  <body>
+    <h1>Crear Nuevo Tipo de Vehículo</h1>
+
+    <form
+      th:object="${tipoVehiculo}"
+      th:action="@{/tiposvehiculos}"
+      method="post"
+    >
+      <label for="descripcion">Descripción:</label>
+      <input
+        type="text"
+        id="descripcion"
+        name="descripcion"
+        th:field="*{descripcion}"
+        required
+      />
+
+      <button type="submit">Guardar Tipo de Vehículo</button>
+    </form>
+
+    <a th:href="@{/tiposvehiculos}" class="btn"
+      >Volver a la lista de Tipos de Vehículos</a
+    >
+  </body>
+</html>

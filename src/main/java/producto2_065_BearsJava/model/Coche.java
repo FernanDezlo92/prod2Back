@@ -1,32 +1,35 @@
 package producto2_065_BearsJava.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.persistence.*;
+
 @Entity
-@Table(name="ch_vehiculos")
-@DiscriminatorValue("ch")
-@PrimaryKeyJoinColumn(name="ch_id")
+@Table(name = "coches")
 public class Coche extends Vehicles {
     @Column(name = "puertas")
-    protected Integer puertas;
+    private int puertas;
 
     @Column(name = "plazas")
-    protected Integer plazas;
+    private int plazas;
 
-    public Integer getPuertas() {
+    public int getPuertas() {
         return puertas;
     }
 
-    public void setPuertas(Integer puertas) {
+    public void setPuertas(int puertas) {
         this.puertas = puertas;
     }
 
-    public Integer getPlazas() {
+    public int getPlazas() {
         return plazas;
     }
 
-    public void setPlazas(Integer plazas) {
+    public void setPlazas(int plazas) {
         this.plazas = plazas;
     }
+
+    public Coche() {
+    }
+
 }

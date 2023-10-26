@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Editar Cliente</title>
+  </head>
+  <body>
+    <h1>Editar Cliente</h1>
+
+    <form
+      th:object="${clientes}"
+      th:action="@{/clientes/{id}(id=${clientes.id})}"
+      method="post"
+    >
+      <label for="firstName">Nombre:</label>
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        th:field="*{firstName}"
+        required
+      />
+
+      <label for="nif">NIF:</label>
+      <input type="text" id="nif" name="nif" th:field="*{nif}" required />
+
+      <button type="submit">Guardar Editado de Cliente</button>
+    </form>
+
+    <a th:href="@{/clientes}" class="btn">Volver a la lista de Clientes</a>
+  </body>
+</html>

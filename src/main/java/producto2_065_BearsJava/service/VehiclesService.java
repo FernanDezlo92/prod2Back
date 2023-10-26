@@ -1,12 +1,36 @@
 package producto2_065_BearsJava.service;
 
-import producto2_065_BearsJava.model.Coche;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import producto2_065_BearsJava.model.Vehicles;
+import producto2_065_BearsJava.repository.VehiclesRepo;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface VehiclesService {
-    // Definir métodos de servicio para las operaciones CRUD
-    List <Vehicles> getAllVehicles();
-    void guardarVehicle(Vehicles vh);
+@Service
+public class VehiclesService {
+    private final VehiclesRepo vehiclesRepo;
+
+    @Autowired
+    public VehiclesService(VehiclesRepo vehiclesRepo) {
+        this.vehiclesRepo = vehiclesRepo;
+    }
+
+    public List<Vehicles> getAllVehicles() {
+        return vehiclesRepo.findAll();
+    }
+
+    public Optional<Vehicles> getVehicleById(Long id) {
+        return vehiclesRepo.findById(id);
+    }
+
+    public void guardarVehicle(Vehicles vehicle) {
+
+        vehiclesRepo.save(vehicle);
+    }
+
+    public void eliminarVehicle(Long id) {
+        vehiclesRepo.deleteById(id);
+    }
 }
